@@ -49,9 +49,9 @@ func _ready():
 	call_deferred("_initiate") # Make sure connection of signals can be done in _ready to receive all signal callback
 
 func _initiate():
+	_on_active_changed()
 	if autostart:
 		start()
-	_on_active_changed()
 	_on_process_mode_changed()
 
 func _process(delta):
