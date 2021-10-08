@@ -45,6 +45,10 @@ func _get_configuration_warning():
 func _ready():
 	if Engine.editor_hint:
 		return
+		
+	# start in manual mode
+	set_physics_process(false)
+	set_process(false)
 
 	call_deferred("_initiate") # Make sure connection of signals can be done in _ready to receive all signal callback
 
