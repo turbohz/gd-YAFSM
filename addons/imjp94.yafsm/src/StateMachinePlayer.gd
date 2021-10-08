@@ -173,6 +173,7 @@ func reset(to=-1, event=ResetEventTrigger.LAST_TO_DEST):
 func start():
 	push(State.ENTRY_STATE)
 	_was_transited = true
+	emit_signal("entered", "")
 
 # Restart player
 func restart(is_active=true, preserve_params=false):
