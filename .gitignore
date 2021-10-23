@@ -2,6 +2,7 @@ build/
 assets/*
 addons/*
 !addons/imjp94.yafsm
+!addons/gdUnit3
 
 # Godot-specific ignores
 .import/

@@ -1,0 +1,68 @@
+[gd_resource type="Resource" load_steps=12 format=2]
+
+[ext_resource path="res://addons/imjp94.yafsm/src/states/State.gd" type="Script" id=1]
+[ext_resource path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" type="Script" id=2]
+[ext_resource path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" type="Script" id=3]
+[ext_resource path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" type="Script" id=4]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+__meta__ = {
+"graph_offset": Vector2( 328, 200 )
+}
+name = "Entry"
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 1 )
+__meta__ = {
+"graph_offset": Vector2( 808, 200 )
+}
+name = "Exit"
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+__meta__ = {
+"graph_offset": Vector2( 568, 200 )
+}
+name = "State"
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 4 )
+name = "proceed"
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 3 )
+from = "Entry"
+to = "State"
+conditions = {
+"proceed": SubResource( 4 )
+}
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 4 )
+name = "done"
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 3 )
+from = "State"
+to = "Exit"
+conditions = {
+"done": SubResource( 6 )
+}
+
+[resource]
+script = ExtResource( 2 )
+name = ""
+states = {
+"Entry": SubResource( 1 ),
+"Exit": SubResource( 2 ),
+"State": SubResource( 3 )
+}
+transitions = {
+"Entry": {
+"State": SubResource( 5 )
+},
+"State": {
+"Exit": SubResource( 7 )
+}
+}
