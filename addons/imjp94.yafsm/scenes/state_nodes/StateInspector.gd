@@ -6,5 +6,8 @@ func can_handle(object):
 	return object is State
 
 func parse_property(object, type, path, hint, hint_text, usage):
-	# Hide all property
-	return true
+	match path:
+		"name","data":
+			return false
+		_:
+			return true
