@@ -58,14 +58,20 @@ func update_label():
 				label.name = condition.name
 				vbox.add_child(label)
 			if "value" in condition:
-				template_var["condition_name"] = condition.name
-				template_var["condition_comparation"] = ValueCondition.COMPARATION_SYMBOLS[condition.comparation]
-				template_var["condition_value"] = condition.get_value_string()
-				label.text = template.format(template_var)
-				var override_template_var = _template_var.get(condition.name)
-				if override_template_var:
-					label.text = label.text.format(override_template_var)
+				# is an actual condition
+				if condition.type == ValueCondition.Type.BOOLEAN:
+					var value = "Y" if condition.get_value() else "N"
+					label.text = "%s? %s"%[condition.name,value] 
+				else:
+					template_var["condition_name"] = condition.name
+					template_var["condition_comparation"] = ValueCondition.COMPARATION_SYMBOLS[condition.comparation]
+					template_var["condition_value"] = condition.get_value_string()
+					label.text = template.format(template_var)
+					var override_template_var = _template_var.get(condition.name)
+					if override_template_var:
+						label.text = label.text.format(override_template_var)
 			else:
+				# is a trigger
 				label.text = condition.name
 	update()
 
