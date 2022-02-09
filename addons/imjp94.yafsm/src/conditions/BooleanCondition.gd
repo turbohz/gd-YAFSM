@@ -3,6 +3,8 @@ extends "ValueCondition.gd"
 
 export(bool) var value setget set_value, get_value
 
+func _init():
+	type = Type.BOOLEAN
 
 func set_value(v):
 	if value != v:

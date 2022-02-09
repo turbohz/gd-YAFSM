@@ -3,6 +3,8 @@ extends "ValueCondition.gd"
 
 export(float) var value setget set_value, get_value
 
+func _init():
+	type = Type.FLOAT
 
 func set_value(v):
 	if not is_equal_approx(value, v):

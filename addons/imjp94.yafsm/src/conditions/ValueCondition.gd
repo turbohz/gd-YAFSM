@@ -4,6 +4,15 @@ extends "Condition.gd"
 signal comparation_changed(new_comparation) # Comparation hanged
 signal value_changed(new_value) # Value changed
 
+enum Type {
+	BOOLEAN,
+	INTEGER,
+	FLOAT,
+	STRING
+}
+
+var type:int
+
 # Enum to define how to compare value
 enum Comparation {
 	EQUAL,
