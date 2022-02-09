@@ -15,8 +15,8 @@ enum Comparation {
 }
 # Comparation symbols arranged in order as enum Comparation
 const COMPARATION_SYMBOLS = [
-	"==",
-	"!=",
+	"=",
+	"≠",
 	">",
 	"<",
 	"≥",
