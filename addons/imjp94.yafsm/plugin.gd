@@ -110,6 +110,12 @@ func _on_focused_object_changed(new_obj):
 		hide_state_machine_editor()
 
 func _on_inspector_changed(property):
+	_refresh_inspector()
+
+func _on_state_node_renamed(new_name):
+	_refresh_inspector()
+
+func _refresh_inspector():
 	get_editor_interface().get_inspector().refresh()
 
 func _on_StateMachineEditor_node_selected(node):
@@ -118,11 +124,14 @@ func _on_StateMachineEditor_node_selected(node):
 		if node.state is StateMachine: # Ignore, inspect state machine will trigger edit()
 			return
 		to_inspect = node.state
+		node.connect("name_edit_entered",self,"_on_state_node_renamed")
 	elif "transition" in node:
 		to_inspect = node.transition
 	get_editor_interface().inspect_object(to_inspect)
 
 func _on_StateMachineEditor_node_deselected(node):
+	if "state" in node and not node.state is StateMachine: 
+		node.disconnect("name_edit_entered",self,"_on_state_node_renamed")
 	get_editor_interface().inspect_object(state_machine_editor.state_machine)
 
 func _on_StateMachineEditor_debug_mode_changed(new_debug_mode):
