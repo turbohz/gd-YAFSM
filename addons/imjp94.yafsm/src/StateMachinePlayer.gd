@@ -43,6 +43,12 @@ func _get_configuration_warning():
 		return "State Machine Player is not going anywhere without default State Machine"
 	return ""
 
+var props setget ,_props
+func _props(): return state_machine.get_state(self.current).data
+
+var state setget ,_state
+func _state(): return get_params()
+
 func _ready():
 	if Engine.editor_hint:
 		return
